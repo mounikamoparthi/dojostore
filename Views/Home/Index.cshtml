@@ -1,0 +1,83 @@
+<html>
+    <title>  Registration </title>
+    <body>
+        @{
+            ViewData["Title"] = "Customers";
+        }
+<div class="row">
+    <div class="col-sm-8">
+        <p><a href="/">Dashboard</a>  |  <a href="/Products">Products</a>  |  <a href="/Orders">Orders</a>  |  Customers  |  <a href="/Settings">Settings</a></p>
+    </div>
+</div>
+
+    
+    @model wedding_planner.Models.RegisterViewModel
+        <h3> Registration </h3>
+
+        <form asp-controller="Home" asp-action="Register" method="post">
+                <p>
+                <label asp-for="FirstName">FirstName:</label>
+                <input asp-for="FirstName" id ="FirstName" name="FirstName">
+                <span asp-validation-for="FirstName"></span>
+                </p>
+                <p>
+                <label asp-for="LastName">LastName:</label>
+                <input asp-for="LastName" id ="LastName" name="LastName">
+                <span asp-validation-for="LastName"></span>
+                </p>
+                <p>
+                <label asp-for="EmailId">EmailId:</label>
+                <input asp-for="EmailId" type = "email" name="EmailId">
+                <span asp-validation-for="EmailId"></span>
+                </p><p>
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" type= "password" name="Password">
+                <span asp-validation-for="Password"></span>
+                </p><p>
+                
+                <label asp-for="PasswordConfirmation">Confirm password:</label>
+                <input asp-for="PasswordConfirmation" type= "password" name="PasswordConfirmation">
+                <span asp-validation-for="PasswordConfirmation"></span>
+                <p></p>
+
+                <button type="submit">Submit </button>            
+            </form>
+
+            <h3> Login </h3>
+             <form asp-controller="Home" asp-action="PostLogin" method="post">
+                </p>
+                <p>
+                <label asp-for="EmailId">EmailId:</label>
+                <input asp-for="EmailId" type = "email" name="EmailId">
+
+                </p><p>
+                <label asp-for="Password">Password:</label>
+                <input asp-for="Password" type= "password" name="Password">
+                </p><p>
+
+                <button type="submit">Submit </button>
+            </form>
+            @{
+                if(ViewBag.Errors != null){
+                    <p style="color:red;"> @ViewBag.Errors[0]</p>
+                }
+            }
+                            
+<div class="row">
+    <table class="table">
+        <tr>
+            <th>Customer Name</th>
+            <th>Created Date</th>
+            <th>Actions</th>
+        </tr>
+        @foreach(var user in @ViewBag.users){
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.CreatedAt.ToString("MM/dd/yyyy")</td>
+                <td><a href="/deleteUser/@user.UserId">Delete</a></td>
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>
