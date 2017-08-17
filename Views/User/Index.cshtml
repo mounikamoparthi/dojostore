@@ -4,12 +4,6 @@
         @{
             ViewData["Title"] = "Customers";
         }
-<div class="row">
-    <div class="col-sm-8">
-        <p><a href="/">Dashboard</a>  |  <a href="/Products">Products</a>  |  <a href="/Orders">Orders</a>  |  Customers  |  <a href="/Settings">Settings</a></p>
-    </div>
-</div>
-
     
     @model dojostore.Models.RegisterViewModel
         <h3> Registration </h3>
@@ -63,21 +57,6 @@
                 }
             }
                             
-<div class="row">
-    <table class="table">
-        <tr>
-            <th>Customer Name</th>
-            <th>Created Date</th>
-            <th>Actions</th>
-        </tr>
-        @foreach(var user in @ViewBag.users){
-            <tr>
-                <td>@user.FirstName</td>
-                <td>@user.CreatedAt.ToString("MM/dd/yyyy")</td>
-                <td><a href="/deleteUser/@user.UserId">Delete</a></td>
-            </tr>
-        }
-    </table>
-</div>
+
 </body>
 </html>

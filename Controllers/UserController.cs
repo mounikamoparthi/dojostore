@@ -66,6 +66,11 @@ namespace dojostore.Controllers
                ViewBag.Errors = new List<string>(){ "Check Username and password"};
                 return View("Index");
         }
+        [HttpGet]
+        [Route("customers")]
+        public IActionResult customers(){
+            return View();
+        }
         
         [HttpGet]
         [Route("logout")]
