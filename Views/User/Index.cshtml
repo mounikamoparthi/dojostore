@@ -14,7 +14,7 @@
     @model dojostore.Models.RegisterViewModel
         <h3> Registration </h3>
 
-        <form asp-controller="Home" asp-action="Register" method="post">
+        <form asp-controller="User" asp-action="Register" method="post">
                 <p>
                 <label asp-for="FirstName">FirstName:</label>
                 <input asp-for="FirstName" id ="FirstName" name="FirstName">
@@ -44,7 +44,7 @@
             </form>
 
             <h3> Login </h3>
-             <form asp-controller="Home" asp-action="PostLogin" method="post">
+             <form asp-controller="User" asp-action="PostLogin" method="post">
                 </p>
                 <p>
                 <label asp-for="EmailId">EmailId:</label>

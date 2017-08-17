@@ -8,15 +8,15 @@ using System.Linq;
 
 namespace dojostore.Controllers
 {
-    public class HomeController : Controller
+    public class UserController : Controller
     {
         private dojoStoreContext _context;
  
-        public HomeController(dojoStoreContext context)
+        public UserController(dojoStoreContext context)
         {
             _context = context;
         }
-        // GET: /Home/
+        // GET: /User/
         [HttpGet]
         [Route("")]
         public IActionResult Index()
@@ -66,6 +66,7 @@ namespace dojostore.Controllers
                ViewBag.Errors = new List<string>(){ "Check Username and password"};
                 return View("Index");
         }
+        
         [HttpGet]
         [Route("logout")]
         public IActionResult Logout(){
