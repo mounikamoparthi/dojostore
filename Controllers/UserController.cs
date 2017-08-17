@@ -69,7 +69,12 @@ namespace dojostore.Controllers
         [HttpGet]
         [Route("customers")]
         public IActionResult customers(){
-            return View();
+            return View("customers");
+        }
+        [HttpPost]
+        [Route("add")]
+        public IActionResult add(){
+            return RedirectToAction("customers");
         }
         
         [HttpGet]
