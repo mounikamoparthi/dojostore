@@ -72,10 +72,37 @@ namespace dojostore.Controllers
             return View("customers");
         }
         [HttpPost]
-        [Route("add")]
-        public IActionResult add(){
-            return RedirectToAction("customers");
+        [Route("Add")]
+        public IActionResult Add(User user){
+            if(ModelState.IsValid){
+                var findUser = _context.users.Where(u => u.FirstName == user.FirstName).ToList();
+                if(findUser.Count <0){
+                    ViewBag.error ="Customer is already registered";
+                    ViewBag.users = _context.users.ToList();
+                    return View("customers");
+                } else {
+                    user.CreatedAt = DateTime.Now;
+                    user.UpdatedAt = DateTime.Now;
+                    _context.Add(user);
+                    _context.SaveChanges();
+                    ViewBag.users = _context.user.ToList();
+                    return View("Customers");
+                }
+            } else {
+                ViewBag.error = "Customer Name is required";
+                ViewBag.users = _context.user.ToList();
+                return View("Customers");
+            }
         }
+        [HttpGet]
+        [Route("deleteUser/{UserId}")]
+        public IActionResult DeleteUser(int UserId){
+            User user = _context.user.Where(u => u.UserId == UserId).FirstOrDefault();
+            _context.user.Remove(user);
+            _context.SaveChanges();
+            ViewBag.users = _context.user.ToList();
+            return View("Customers");
+        }     
         
         [HttpGet]
         [Route("logout")]
